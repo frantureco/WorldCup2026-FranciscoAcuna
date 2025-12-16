@@ -43,9 +43,8 @@ fun GruposView(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            BackgroundImage()
             when (state) {
-                GruposState.Cargando -> Text("Cargando...")
+                GruposState.Cargando -> Cargando()
                 is GruposState.Resultado -> GroupsList(grupos = state.grupos){
                     onAction(OnGrupoClick(it))
                 }
@@ -82,7 +81,7 @@ fun GroupCardView(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "grupo.name",
+                text = grupo.name,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
@@ -91,7 +90,7 @@ fun GroupCardView(
             Spacer(modifier = Modifier.height(12.dp))
             grupo.teams.forEach { team ->
                 Text(
-                    text = team,
+                    text = "Chile",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
@@ -103,9 +102,9 @@ fun GroupCardView(
 }
 
 @Composable
-fun BackgroundImage() {
+private fun BackgroundImage() {
     Image(
-        painter = painterResource(R.drawable.logo_viejo),
+        painter = painterResource(R.drawable.logo),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
@@ -115,7 +114,7 @@ fun BackgroundImage() {
 }
 
 @Composable
-fun Cargando() {
+private fun Cargando() {
     Box (
         modifier = Modifier
             .fillMaxSize(),
